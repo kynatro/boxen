@@ -1,0 +1,23 @@
+{
+  "name": "Boxen",
+  "repository": "git@github.com:kynatro/boxen.git",
+  "success_url": "/",
+  "scripts": {
+  },
+  "stack": "heroku-16",
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
