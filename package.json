@@ -1,13 +1,41 @@
 {
   "name": "boxen",
+  "description": "A simple inventory application for keeping track of what's in boxes.",
+  "keywords": [
+    "inventory",
+    "react",
+    "react router",
+    "redux"
+  ],
+  "author": "Dave Shepard <kynatro@gmail.com>",
   "private": true,
+  "scripts": {
+    "start": "bundle exec rails s",
+    "watch": "./bin/webpack-dev-server",
+    "start:watch": "npm run start & npm run watch"
+  },
   "dependencies": {
     "@rails/webpacker": "^3.1.1",
+    "axios": "^0.17.1",
+    "babel-eslint": "^7.2.3",
     "babel-preset-react": "^6.24.1",
-    "coffeescript": "1.12.7",
+    "bootstrap": "4.0.0-beta.2",
+    "classnames": "^2.2.5",
+    "eslint": "^4.1.1",
+    "eslint-config-react-app": "^2.0.1",
+    "eslint-plugin-flowtype": "^2.34.1",
+    "eslint-plugin-import": "^2.6.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "history": "^4.7.2",
+    "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.9",
+    "redux": "^3.7.2",
     "yarn": "^1.3.2"
   },
   "devDependencies": {

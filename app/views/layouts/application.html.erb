@@ -4,10 +4,19 @@
     <title>Boxen</title>
     <%= csrf_meta_tags %>
 
-    <%= javascript_pack_tag 'application' %>
+    <link rel="prefetch" href="<%= asset_pack_path 'application.css' %>" />
+
+    <%#= stylesheet_pack_tag "vendor" %>
+    <%= stylesheet_pack_tag 'application' %>
   </head>
 
   <body>
     <%= yield %>
+
+    <%= app_meta %>
+
+    <%= javascript_pack_tag "manifest" %>
+    <%= javascript_pack_tag "vendor" %>
+    <%= javascript_pack_tag 'application' %>
   </body>
 </html>
