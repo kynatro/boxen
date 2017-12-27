@@ -10,9 +10,7 @@ gem 'pg', '~> 0.18.4'
 gem 'puma', '~> 3.7'
 gem 'webpacker', '~> 3.0'
 gem 'devise', '~> 4.0'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+gem 'jsonapi-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

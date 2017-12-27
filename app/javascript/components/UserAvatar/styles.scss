@@ -1,0 +1,12 @@
+.UserAvatar {
+  position: relative;
+  height: 1em;
+  display: inline-block;
+
+  .avatar-image {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+}

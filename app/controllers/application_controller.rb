@@ -39,4 +39,8 @@ class ApplicationController < ActionController::Base
         return type unless flash[type].blank?
       end
     end
+
+    def verify_admin!
+      redirect_to "/", flash: "You must be an administrator to access this content" if !current_user.admin?
+    end
 end

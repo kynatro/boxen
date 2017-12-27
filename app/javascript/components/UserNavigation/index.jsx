@@ -1,13 +1,38 @@
+import { connect } from 'react-redux'
+
 import SignOut from '../devise/SignOut'
+import NavbarNav from '../NavbarNav'
+import UserAvatar from '../UserAvatar'
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    currentUser: state.currentUser,
+    ...ownProps
+  }
+}
 
 class UserNavigation extends Component {
   render() {
+    const { currentUser } = this.props
+
+    let navItems = [
+      {
+        label: <UserAvatar user={currentUser} />,
+        path: '/profile',
+        items: [
+          {
+            label: 'Edit Profile',
+            path: '/profile/edit'
+          },
+          <SignOut />
+        ]
+      }
+    ]
+
     return (
-      <ul className="navbar-nav">
-        <li><SignOut /></li>
-      </ul>
+      <NavbarNav items={navItems} />
     )
   }
 }
 
-export default UserNavigation
+export default connect(mapStateToProps)(UserNavigation)

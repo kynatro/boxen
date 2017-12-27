@@ -1,6 +1,13 @@
+import { connect } from 'react-redux'
 import axios from 'axios'
 
-const { AppMeta } = window
+const mapStateToProps = (state, ownProps) => {
+  return {
+    after_sign_out_path: state.appMeta.devise_paths.after_sign_out_path,
+    destroy_user_session_path: state.appMeta.devise_paths.destroy_user_session_path,
+    ...ownProps
+  }
+}
 
 class SignOut extends Component {
   constructor(props) {
@@ -9,8 +16,10 @@ class SignOut extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick() {
-    const { after_sign_out_path, destroy_user_session_path } = AppMeta.devise_paths
+  handleClick(event) {
+    const { after_sign_out_path, destroy_user_session_path } = this.props
+
+    event.preventDefault()
 
     axios.delete(destroy_user_session_path)
       .then(() => {
@@ -19,10 +28,10 @@ class SignOut extends Component {
   }
 
   render() {
-    const { label } = this.props
+    const { destroy_user_session_path, label } = this.props
 
     return (
-      <a rel="nofollow" onClick={this.handleClick}>{label}</a>
+      <a href={destroy_user_session_path} rel="nofollow" onClick={this.handleClick}>{label}</a>
     )
   }
 }
@@ -35,4 +44,4 @@ SignOut.propTypes = {
   label: PropTypes.string
 }
 
-export default SignOut
+export default connect(mapStateToProps)(SignOut)

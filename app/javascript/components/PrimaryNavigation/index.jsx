@@ -1,43 +1,46 @@
-import { Link, NavLink } from 'react-router-dom'
-import classNames from 'classnames'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import UserNavigation from '../UserNavigation'
+import NavbarNav from '../NavbarNav'
 
-const { AppMeta } = window
+const mapStateToProps = (state, ownProps) => {
+  return {
+    title: state.appMeta.title,
+    adminMode: state.adminMode,
+    ...ownProps
+  }
+}
 
 class PrimaryNavigation extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      navItems: [
-        {
-          label: 'Home',
-          path: '/'
-        }
-      ]
-    }
-  }
-
   render() {
-    const { navItems } = this.state
+    const { adminMode, title } = this.props
+
+    let navItems = []
+
+    if (adminMode) {
+      navItems.push({
+        label: 'Administer',
+        path: '/admin',
+        items: [
+          {
+            label: 'Users',
+            path: '/admin/users'
+          }
+        ]
+      })
+    }
 
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light PrimaryNavigation">
-        <Link to="/" className="navbar-brand">{AppMeta.title}</Link>
+        <Link to="/" className="navbar-brand">{title}</Link>
 
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarPrimaryNavigation" aria-controls="navbarPrimaryNavigation" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
 
         <div className="collapse navbar-collapse" id="navbarPrimaryNavigation">
-          <ul className="navbar-nav mr-auto">
-            {navItems.map(({ path, label }, i) => (
-              <li key={path} className={classNames('nav-item')}>
-                <NavLink to={path} exact>{label}</NavLink>
-              </li>
-            ))}
-          </ul>
+          <NavbarNav items={navItems} rightSpacing="auto" />
           <UserNavigation />
         </div>
       </nav>
@@ -45,4 +48,4 @@ class PrimaryNavigation extends Component {
   }
 }
 
-export default PrimaryNavigation
+export default connect(mapStateToProps)(PrimaryNavigation)
