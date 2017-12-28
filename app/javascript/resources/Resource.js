@@ -56,7 +56,7 @@ class Resource {
       cached = this.caches.all.get({id, params})
     }
 
-    if(cached) {
+    if (cached) {
       return Promise.resolve(cached)
     }
 
@@ -66,8 +66,11 @@ class Resource {
         params
       }).then((response) => {
         if (id) {
-          this.caches[id].clear()
+          this.caches[id].set({id, params}, response)
+        } else {
+          this.caches.all.set({id, params}, response)
         }
+
         resolve(response)
       }).catch((reason) => {
         reject(reason)

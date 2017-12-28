@@ -4,8 +4,18 @@ Rails.application.routes.draw do
 
   root to: "static#index"
 
-  resources :users, only: [:index, :show], constraints: lambda { |req| req.format == :json }
-  resources :users, only: [:create, :update, :delete]
+  namespace :admin do
+    resources :locations, only: [:index, :show], constraints: lambda { |req| req.format == :json }
+    resources :locations, only: [:create, :update, :delete]
+
+    resources :users, only: [:index, :show], constraints: lambda { |req| req.format == :json }
+    resources :users, only: [:create, :update, :delete]
+  end
+
+  resources :locations, only: [:index, :show], constraints: lambda { |req| req.format == :json }
+  resources :locations, only: [:create, :update, :delete]
+
+  get '/profile', to: 'users#profile', constraints: lambda { |req| req.format == :json }
 
   get '*path', controller: :static, action: :index
 end

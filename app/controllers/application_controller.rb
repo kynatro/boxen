@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   before_action :devise_paths
 
   private
-
     def devise_paths
       @devise_paths ||= {
         new_user_session_path: new_user_session_path,
@@ -38,9 +37,5 @@ class ApplicationController < ActionController::Base
       [:error, :warning, :notice].each do |type|
         return type unless flash[type].blank?
       end
-    end
-
-    def verify_admin!
-      redirect_to "/", flash: "You must be an administrator to access this content" if !current_user.admin?
     end
 end

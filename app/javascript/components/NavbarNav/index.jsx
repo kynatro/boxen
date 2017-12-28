@@ -6,10 +6,8 @@ import uniqid from '../../helpers/uniqid'
 import NavItem from '../NavItem'
 
 const mapStateToProps = (state, ownProps) => {
-  const { items, ...restProps } = ownProps
-
   return {
-    items: items.map(item => {
+    items: ownProps.items.map(item => {
       if (item.props) {
         return React.cloneElement(item, {
           key: uniqid()
@@ -18,7 +16,8 @@ const mapStateToProps = (state, ownProps) => {
         return item
       }
     }),
-    ...restProps
+    leftSpacing: ownProps.leftSpacing,
+    rightSpacing: ownProps.rightSpacing
   }
 }
 

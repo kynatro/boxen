@@ -6,8 +6,7 @@ import UserAvatar from '../UserAvatar'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    currentUser: state.currentUser,
-    ...ownProps
+    currentUser: state.currentUser
   }
 }
 

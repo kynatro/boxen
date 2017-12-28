@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import UserNavigation from '../UserNavigation'
@@ -6,9 +6,9 @@ import NavbarNav from '../NavbarNav'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    title: state.appMeta.title,
     adminMode: state.adminMode,
-    ...ownProps
+    location: ownProps.location,
+    title: state.appMeta.title
   }
 }
 
@@ -26,6 +26,10 @@ class PrimaryNavigation extends Component {
           {
             label: 'Users',
             path: '/admin/users'
+          },
+          {
+            label: 'Locations',
+            path: '/admin/locations'
           }
         ]
       })
@@ -48,4 +52,4 @@ class PrimaryNavigation extends Component {
   }
 }
 
-export default connect(mapStateToProps)(PrimaryNavigation)
+export default withRouter(connect(mapStateToProps)(PrimaryNavigation))

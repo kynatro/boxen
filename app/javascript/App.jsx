@@ -1,18 +1,17 @@
-import { Switch, Route } from 'react-router-dom'
+import { withRouter, Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import PrimaryNavigation from 'components/PrimaryNavigation'
 import FlashMessage from 'components/FlashMessage'
 
+import LocationsTable from 'components/admin/LocationsTable'
 import UsersTable from 'components/admin/UsersTable'
 
 import './App.scss'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    adminMode: state.adminMode,
-    location: state.router.location,
-    ...ownProps
+    location: ownProps.location
   }
 }
 
@@ -27,6 +26,7 @@ class App extends Component {
           <Route path="/admin" render={() => (
             <Switch>
               <Route path="/admin/users" component={UsersTable} />
+              <Route path="/admin/locations" component={LocationsTable} />
             </Switch>
           )} />
         </div>
@@ -35,4 +35,4 @@ class App extends Component {
   }
 }
 
-export default connect(mapStateToProps)(App)
+export default withRouter(connect(mapStateToProps)(App))

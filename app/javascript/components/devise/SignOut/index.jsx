@@ -5,7 +5,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     after_sign_out_path: state.appMeta.devise_paths.after_sign_out_path,
     destroy_user_session_path: state.appMeta.devise_paths.destroy_user_session_path,
-    ...ownProps
+    label: ownProps.label
   }
 }
 

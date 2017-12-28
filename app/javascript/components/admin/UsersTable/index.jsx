@@ -1,5 +1,5 @@
 import Table from '../../Table'
-import UserResource from '../../../resources/User'
+import AdminUserResource from '../../../resources/AdminUser'
 
 class UsersTable extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class UsersTable extends Component {
   }
 
   componentWillMount() {
-    UserResource.get()
+    AdminUserResource.get()
       .then((response) => {
         this.setState({
           rows: response.data.data.map(row => {

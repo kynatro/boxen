@@ -4,22 +4,21 @@ import classNames from 'classnames'
 const mapStateToProps = (state, ownProps) => {
   return {
     flashType: state.flash.type,
-    flashMessage: state.flash.message,
-    ...ownProps
+    flashMessage: state.flash.message
   }
 }
 
 class FlashMessage extends Component {
   render() {
-    const { message, type } = this.props
+    const { flashMessage, flashType } = this.props
 
-    if (message) {
+    if (flashMessage) {
       return (
         <div className={classNames('alert', {
-          'alert-danger': type === 'error',
-          'alert-warning': type === 'warning',
-          'alert-info': type === 'notice'
-        })} role="alert">{message}</div>
+          'alert-danger': flashType === 'error',
+          'alert-warning': flashType === 'warning',
+          'alert-info': flashType === 'notice'
+        })} role="alert">{flashMessage}</div>
       )
     } else {
       return null
